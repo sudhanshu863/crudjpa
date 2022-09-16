@@ -1,6 +1,7 @@
 package com.sudhanshu.app.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,8 +26,8 @@ public class UserController {
 	
     @GetMapping("/userread/{id}")
     public Users read(@PathVariable ("id") int id) {
-		Users users= repository.findById(id).get();
-		return users;
+		return repository.findById(id).get();
+		
     }
     
     @PutMapping(value = "/updateuser",consumes = "application/json")
@@ -37,5 +38,10 @@ public class UserController {
     		repository.save(user1);
     		return user1;
     }   
+    @DeleteMapping(value = "/delete/{id}",consumes = "application/json")
+    	public void delete(@PathVariable ("id") int id){
+    		 repository.deleteById(3);
+    	}
+    }
     
-}
+
